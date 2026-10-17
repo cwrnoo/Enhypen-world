@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENHYPEN WORLD | Welcome ENGENE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c90a18;
+            --primary-glow: rgba(201, 10, 24, 0.4);
+            --bg-dark: #07070a;
+            --card-bg: rgba(18, 18, 26, 0.85);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --text-main: #f0f0f5;
+            --text-sub: #a0a0b8;
+            --accent-gold: #e2b04f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(201, 10, 24, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(80, 0, 150, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 4%;
+            background: rgba(7, 7, 10, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 1rem 3rem 1rem;
+            position: relative;
+        }
+
+        .hero-banner {
+            width: 100%;
+            max-width: 900px;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: brightness(0.9) contrast(1.05);
+            transition: transform 0.5s ease;
+        }
+
+        .hero-banner:hover img {
+            transform: scale(1.02);
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 30%, #888888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--primary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            color: var(--text-sub);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .btn-main {
+            padding: 0.9rem 2.2rem;
+            border: 1px solid var(--primary);
+            background: rgba(201, 10, 24, 0.2);
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .btn-main:hover {
+            background: var(--primary);
+            box-shadow: 0 0 30px var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Floating Audio Widget */
+        .bgm-player {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: rgba(18, 18, 26, 0.9);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(15px);
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .bgm-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: 0.3s ease;
+        }
+
+        .bgm-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .bgm-info {
+            font-size: 0.85rem;
+        }
+
+        .bgm-title {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .bgm-artist {
+            color: var(--text-sub);
+            font-size: 0.75rem;
+        }
+
+        /* Section Layouts */
+        section {
+            padding: 5rem 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--primary);
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* About Box Styling */
+        .about-card {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        .about-text {
+            color: var(--text-sub);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Achievements Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .achievement-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .achievement-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(226, 176, 79, 0.15);
+        }
+
+        .achievement-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.6rem;
+            letter-spacing: 1px;
+        }
+
+        .achievement-desc {
+            color: var(--text-sub);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        /* Discography Section */
+        .disco-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .disco-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        .disco-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .video-box {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .video-box iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .disco-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 0.4rem;
+        }
+
+        .disco-sub {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Photo Gallery Carousel */
+        .gallery-container {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 1rem 0 2rem 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .gallery-item {
+            flex: 0 0 280px;
+            height: 380px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            cursor: pointer;
+            scroll-snap-align: start;
+            position: relative;
+            transition: 0.3s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: #fff;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Lightbox Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(201, 10, 24, 0.4);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #fff;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+
+        /* Soulmate Quiz */
+        .quiz-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .quiz-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.8rem;
+            color: #fff;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .quiz-btn {
+            padding: 1rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s ease;
+        }
+
+        .quiz-btn:hover {
+            background: rgba(201, 10, 24, 0.25);
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .quiz-result {
+            display: none;
+            padding: 1.5rem;
+            border-radius: 16px;
+            background: rgba(201, 10, 24, 0.15);
+            border: 1px solid var(--primary);
+            margin-top: 1.5rem;
+        }
+
+        /* Members Grid & Biodata Cards */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .member-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .member-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(201, 10, 24, 0.25);
+        }
+
+        .member-img-box {
+            height: 380px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #12121a;
+        }
+
+        .member-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.5s ease;
+        }
+
+        .member-card:hover .member-img-box img {
+            transform: scale(1.05);
+        }
+
+        .member-info {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .member-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            margin-bottom: 4px;
+            letter-spacing: 2px;
+        }
+
+        .member-role {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Biodata List */
+        .biodata-list {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .biodata-list li {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .biodata-label {
+            color: #8888a0;
+            font-weight: 500;
+        }
+
+        .biodata-value {
+            color: #fff;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .member-bio {
+            color: var(--text-sub);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin-top: auto;
+        }
+
+        /* Guestbook / Love Wall */
+        .guestbook-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2.5rem;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: #fff;
+            outline: none;
+            transition: 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .messages-list {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .message-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.2rem;
+            border-radius: 12px;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .message-author {
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+
+        .message-bias {
+            font-size: 0.8rem;
+            background: rgba(201, 10, 24, 0.3);
+            padding: 2px 8px;
+            border-radius: 20px;
+            color: #fff;
+        }
+
+        .message-text {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            section { padding: 4rem 5%; }
+            .bgm-player { bottom: 15px; right: 15px; }
+            .hero-banner { height: 240px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio Element -->
+    <audio id="bgmAudio" autoplay loop>
+        <source src="Bad For You.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="logo">ENHYPEN<span>WORLD</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#members">Members</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#disco">MV Showcase</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+            <li><a href="#love-wall">ENGENE Wall</a></li>
+        </ul>
+    </nav>
+
+    <!-- Floating Audio Player -->
+    <div class="bgm-player">
+        <button class="bgm-btn" id="playBtn" onclick="toggleAudio()">▶</button>
+        <div class="bgm-info">
+            <div class="bgm-title">Bad For You</div>
+            <div class="bgm-artist">ENHYPEN BGM</div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-banner">
+            <img src="groupphoto.jpeg" alt="ENHYPEN Group Photo">
+        </div>
+        <div class="hero-subtitle">Connect · Discover · Grow</div>
+        <h1 class="hero-title">ENHYPEN WORLD</h1>
+        <p class="hero-description">
+            Welcome to the ultimate sanctuary for ENGENEs around the world. Step into our realm and discover the mesmerizing artistry, dark concepts, global achievements, and member biodatas of ENHYPEN.
+        </p>
+        <a href="#members" class="btn-main">View Member Profiles</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header">
+            <div class="section-subtitle">Our Universe</div>
+            <h2 class="section-title">WHO ARE ENHYPEN?</h2>
+        </div>
+        <div class="about-card">
+            <div class="about-text">
+                <p>
+                    <strong>ENHYPEN (엔하이픈)</strong> is a 6-member South Korean boy group under BE:LIFT Lab, a subsidiary label under HYBE. The members are <strong>Jungwon, Jay, Jake, Sunghoon, Sunoo, and Ni-ki</strong>. On March 10, 2026, it was announced that Heeseung has left the group.
+                </p>
+                <p>
+                    They debuted on <strong>November 30, 2020</strong>, with their first mini album, <i>BORDER: DAY ONE</i>. The group made their Japanese debut on <strong>July 6, 2021</strong>.
+                </p>
+                <p>
+                    Inspired by the hyphen symbol (-), their name signifies how different members connect, discover one another, and grow together across borders.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements">
+        <div class="section-header">
+            <div class="section-subtitle">Milestones & Awards</div>
+            <h2 class="section-title">GROUP ACHIEVEMENTS</h2>
+        </div>
+
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">🏆</div>
+                <h3 class="achievement-title">Rookie Grand Slam</h3>
+                <p class="achievement-desc">Swept "Rookie of the Year" across all major Korean awards including MAMA, Golden Disc Awards, Seoul Music Awards, and Gaon Chart Awards.</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">📈</div>
+                <h3 class="achievement-title">Billboard 200 Tops</h3>
+                <p class="achievement-desc">Achieved #1 on the US Billboard 200 chart and topped 5 separate Billboard charts simultaneously with their releases.</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">💿</div>
+                <h3 class="achievement-title">Multi-Million Sellers</h3>
+                <p class="achievement-desc">Surpassed over 2 Million first-week sales on Hanteo, certifying multiple double-million selling albums worldwide.</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🏟️</div>
+                <h3 class="achievement-title">Global Stadium Tours</h3>
+                <p class="achievement-desc">Sold out massive world tours ('FATE', 'WALK THE LINE') across global domes and stadiums in Asia, USA, and Europe.</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🥇</div>
+                <h3 class="achievement-title">Music Show Trophies</h3>
+                <p class="achievement-desc">Earned dozens of 1st Place music show wins on M Countdown, Music Bank, Inkigayo, and Show Champion.</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">✨</div>
+                <h3 class="achievement-title">Global Ambassadors</h3>
+                <p class="achievement-desc">Selected as luxury brand house ambassadors (Prada) and regional representatives for major global campaigns.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Biodata Section -->
+    <section id="members">
+        <div class="section-header">
+            <div class="section-subtitle">Official Profiles</div>
+            <h2 class="section-title">MEMBER BIODATA</h2>
+        </div>
+        
+        <div class="members-grid">
+            
+            <!-- Jungwon -->
+            <div class="member-card">
+                <div class="member-img-box">
+                    <img src="jungwon.jpeg" alt="Jungwon">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">JUNGWON</h3>
+                    <div class="member-role">Leader · Lead Vocalist · Lead Dancer</div>
+                    <ul class="biodata-list">
+                        <li><span class="biodata-label">Real Name:</span> <span class="biodata-value">Yang Jung-won (양정원)</span></li>
+                        <li><span class="biodata-label">Birthday:</span> <span class="biodata-value">February 9, 2004</span></li>
+                        <li><span class="biodata-label">Zodiac Sign:</span> <span class="biodata-value">Aquarius</span></li>
+                        <li><span class="biodata-label">Height:</span> <span class="biodata-value">175 cm (5'9")</span></li>
+                        <li><span class="biodata-label">MBTI:</span> <span class="biodata-value">ISTJ</span></li>
+                        <li><span class="biodata-label">Nationality:</span> <span class="biodata-value">Korean</span></li>
+                    </ul>
+                    <p class="member-bio">Reliable, calm, and dependable. Jungwon was a former Taekwondo athlete and leads the group with wisdom, incredible vocality, and dimpled charm.</p>
+                </div>
+            </div>
+
+            <!-- Jay -->
+            <div class="member-card">
+                <div class="member-img-box">
+                    <img src="jay.jpeg" alt="Jay">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">JAY</h3>
+                    <div class="member-role">Main Rapper · Lead Dancer · Vocalist</div>
+                    <ul class="biodata-list">
+                        <li><span class="biodata-label">Real Name:</span> <span class="biodata-value">Jay Park / Park Jong-seong</span></li>
+                        <li><span class="biodata-label">Birthday:</span> <span class="biodata-value">April 20, 2002</span></li>
+                        <li><span class="biodata-label">Zodiac Sign:</span> <span class="biodata-value">Taurus</span></li>
+                        <li><span class="biodata-label">Height:</span> <span class="biodata-value">180 cm (5'11")</span></li>
+                        <li><span class="biodata-label">MBTI:</span> <span class="biodata-value">ENTJ</span></li>
+                        <li><span class="biodata-label">Nationality:</span> <span class="biodata-value">Korean-American</span></li>
+                    </ul>
+                    <p class="member-bio">Passionate, stylish, and full of energy. Born in Seattle, Jay is known for his signature "RAS" energy, guitar playing skills, and deep fashion sense.</p>
+                </div>
+            </div>
+
+            <!-- Jake -->
+            <div class="member-card">
+                <div class="member-img-box">
+                    <img src="jake.jpeg" alt="Jake">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">JAKE</h3>
+                    <div class="member-role">Rapper · Vocalist</div>
+                    <ul class="biodata-list">
+                        <li><span class="biodata-label">Real Name:</span> <span class="biodata-value">Jake Sim / Sim Jae-yun</span></li>
+                        <li><span class="biodata-label">Birthday:</span> <span class="biodata-value">November 15, 2002</span></li>
+                        <li><span class="biodata-label">Zodiac Sign:</span> <span class="biodata-value">Scorpio</span></li>
+                        <li><span class="biodata-label">Height:</span> <span class="biodata-value">176 cm (5'9.5")</span></li>
+                        <li><span class="biodata-label">MBTI:</span> <span class="biodata-value">ESTJ</span></li>
+                        <li><span class="biodata-label">Nationality:</span> <span class="biodata-value">Korean-Australian</span></li>
+                    </ul>
+                    <p class="member-bio">Warm-hearted and hardworking. Raised in Brisbane, Australia, Jake is known for his endearing personality, love for soccer, and impressive musical growth.</p>
+                </div>
+            </div>
+
+            <!-- Sunghoon -->
+            <div class="member-card">
+                <div class="member-img-box">
+                    <img src="sunghoon.jpeg" alt="Sunghoon">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">SUNGHOON</h3>
+                    <div class="member-role">Vocalist · Lead Dancer · Visual</div>
+                    <ul class="biodata-list">
+                        <li><span class="biodata-label">Real Name:</span> <span class="biodata-value">Park Sung-hoon (박성훈)</span></li>
+                        <li><span class="biodata-label">Birthday:</span> <span class="biodata-value">December 8, 2002</span></li>
+                        <li><span class="biodata-label">Zodiac Sign:</span> <span class="biodata-value">Sagittarius</span></li>
+                        <li><span class="biodata-label">Height:</span> <span class="biodata-value">180 cm (5'11")</span></li>
+                        <li><span class="biodata-label">MBTI:</span> <span class="biodata-value">ISTP</span></li>
+                        <li><span class="biodata-label">Nationality:</span> <span class="biodata-value">Korean</span></li>
+                    </ul>
+                    <p class="member-bio">Nicknamed the "Ice Prince", Sunghoon was a former competitive figure skater who brought his graceful lines and commanding visual presence to the group.</p>
+                </div>
+            </div>
+
+            <!-- Sunoo -->
+            <div class="member-card">
+                <div class="member-img-box">
+                    <img src="sunoo.jpeg" alt="Sunoo">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">SUNOO</h3>
+                    <div class="member-role">Lead Vocalist</div>
+                    <ul class="biodata-list">
+                        <li><span class="biodata-label">Real Name:</span> <span class="biodata-value">Kim Seon-woo (김선우)</span></li>
+                        <li><span class="biodata-label">Birthday:</span> <span class="biodata-value">June 24, 2003</span></li>
+                        <li><span class="biodata-label">Zodiac Sign:</span> <span class="biodata-value">Cancer</span></li>
+                        <li><span class="biodata-label">Height:</span> <span class="biodata-value">175 cm (5'9")</span></li>
+                        <li><span class="biodata-label">MBTI:</span> <span class="biodata-value">ENFP</span></li>
+                        <li><span class="biodata-label">Nationality:</span> <span class="biodata-value">Korean</span></li>
+                    </ul>
+                    <p class="member-bio">Bright, highly expressive, and versatile. Sunoo brings warmth and sunshine personality to ENHYPEN along with rich, emotional vocal tones.</p>
+                </div>
+            </div>
+
+            <!-- Ni-ki -->
+            <div class="member-card">
+                <div class="member-img-box">
+                    <img src="niki,jpeg.jpeg" alt="Ni-ki">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">NI-KI</h3>
+                    <div class="member-role">Main Dancer · Vocalist · Maknae</div>
+                    <ul class="biodata-list">
+                        <li><span class="biodata-label">Real Name:</span> <span class="biodata-value">Nishimura Riki (西村 力)</span></li>
+                        <li><span class="biodata-label">Birthday:</span> <span class="biodata-value">December 9, 2005</span></li>
+                        <li><span class="biodata-label">Zodiac Sign:</span> <span class="biodata-value">Sagittarius</span></li>
+                        <li><span class="biodata-label">Height:</span> <span class="biodata-value">186 cm (6'1")</span></li>
+                        <li><span class="biodata-label">MBTI:</span> <span class="biodata-value">ENTJ</span></li>
+                        <li><span class="biodata-label">Nationality:</span> <span class="biodata-value">Japanese</span></li>
+                    </ul>
+                    <p class="member-bio">Dance prodigy from Okayama, Japan. Ni-ki is the youngest member of ENHYPEN, known for his extraordinary dance precision, stage control, and playful nature.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Photo Gallery Carousel -->
+    <section id="gallery">
+        <div class="section-header">
+            <div class="section-subtitle">Visual Experience</div>
+            <h2 class="section-title">PHOTO GALLERY</h2>
+        </div>
+
+        <div class="gallery-container">
+            <div class="gallery-item" onclick="openModal('groupphoto.jpeg')">
+                <img src="groupphoto.jpeg" alt="Group Concept">
+                <div class="gallery-caption">Group Concept Photo</div>
+            </div>
+            <div class="gallery-item" onclick="openModal('jungwon.jpeg')">
+                <img src="jungwon.jpeg" alt="Jungwon Concept">
+                <div class="gallery-caption">Jungwon</div>
+            </div>
+            <div class="gallery-item" onclick="openModal('jay.jpeg')">
+                <img src="jay.jpeg" alt="Jay Concept">
+                <div class="gallery-caption">Jay</div>
+            </div>
+            <div class="gallery-item" onclick="openModal('jake.jpeg')">
+                <img src="jake.jpeg" alt="Jake Concept">
+                <div class="gallery-caption">Jake</div>
+            </div>
+            <div class="gallery-item" onclick="openModal('sunghoon.jpeg')">
+                <img src="sunghoon.jpeg" alt="Sunghoon Concept">
+                <div class="gallery-caption">Sunghoon</div>
+            </div>
+            <div class="gallery-item" onclick="openModal('sunoo.jpeg')">
+                <img src="sunoo.jpeg" alt="Sunoo Concept">
+                <div class="gallery-caption">Sunoo</div>
+            </div>
+            <div class="gallery-item" onclick="openModal('niki,jpeg.jpeg')">
+                <img src="niki,jpeg.jpeg" alt="Ni-ki Concept">
+                <div class="gallery-caption">Ni-ki</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <!-- MV Showcase Section -->
+    <section id="disco">
+        <div class="section-header">
+            <div class="section-subtitle">Iconic Hits</div>
+            <h2 class="section-title">MUSIC VIDEO SHOWCASE</h2>
+        </div>
+
+        <div class="disco-grid">
+            <div class="disco-card">
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed/wXFLzODIdUI" allowfullscreen></iframe>
+                </div>
+                <h3 class="disco-title">BITE ME</h3>
+                <div class="disco-sub">DARK BLOOD</div>
+            </div>
+
+            <div class="disco-card">
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed/X7d6Dt17yHk" allowfullscreen></iframe>
+                </div>
+                <h3 class="disco-title">FEVER</h3>
+                <div class="disco-sub">BORDER: CARNIVAL</div>
+            </div>
+
+            <div class="disco-card">
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed/143_0C9-OTo" allowfullscreen></iframe>
+                </div>
+                <h3 class="disco-title">SWEET VENOM</h3>
+                <div class="disco-sub">ORANGE BLOOD</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soulmate Vibe Quiz -->
+    <section id="quiz">
+        <div class="section-header">
+            <div class="section-subtitle">Interactive Mini-Game</div>
+            <h2 class="section-title">FIND YOUR ENHYPEN SOULMATE</h2>
+        </div>
+
+        <div class="quiz-container">
+            <div id="quizBox">
+                <div class="quiz-question" id="quizQuestion">Select your favorite aesthetic vibe:</div>
+                <div class="quiz-options" id="quizOptions">
+                    <button class="quiz-btn" onclick="answerQuiz('Leadership & Calm')">👑 Elegant & Calm Leadership</button>
+                    <button class="quiz-btn" onclick="answerQuiz('Fashion & Rock')">🎸 Rock & Stylish Fashion</button>
+                    <button class="quiz-btn" onclick="answerQuiz('Warmth & Sports')">⚽ Warm & Athletic Energy</button>
+                    <button class="quiz-btn" onclick="answerQuiz('Graceful & Ice')">❄️ Graceful & Elegant Chic</button>
+                    <button class="quiz-btn" onclick="answerQuiz('Sunshine & Bright')">☀️ Bright & Expressive Sunshine</button>
+                    <button class="quiz-btn" onclick="answerQuiz('Dance & Powerful')">🔥 Powerful & Precise Dance</button>
+                </div>
+            </div>
+
+            <div class="quiz-result" id="quizResult">
+                <h3 style="font-family: 'Cinzel', serif; color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 0.5rem;" id="matchTitle">Your Match!</h3>
+                <p id="matchDesc" style="color: var(--text-sub); line-height: 1.6;"></p>
+                <button class="btn-main" style="margin-top: 1.2rem; padding: 0.6rem 1.5rem;" onclick="resetQuiz()">Try Again 🔄</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENGENE Love Wall Section -->
+    <section id="love-wall">
+        <div class="section-header">
+            <div class="section-subtitle">ENGENE Community</div>
+            <h2 class="section-title">LEAVE A MESSAGE</h2>
+        </div>
+
+        <div class="guestbook-container">
+            <form id="loveForm">
+                <div class="form-group">
+                    <label for="username">Your Name / ENGENE Name</label>
+                    <input type="text" id="username" class="form-control" placeholder="e.g. VampireENGENE" required>
+                </div>
+                <div class="form-group">
+                    <label for="bias">Your Bias</label>
+                    <input type="text" id="bias" class="form-control" placeholder="e.g. Jungwon, All members..." required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message for ENHYPEN</label>
+                    <textarea id="message" class="form-control" placeholder="Share your love and support..." required></textarea>
+                </div>
+                <button type="submit" class="btn-main" style="width: 100%;">Post Message ❤️</button>
+            </form>
+
+            <div class="messages-list" id="messagesList">
+                <!-- Messages will load here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with ❤️ by an ENGENE | Designed for ENHYPEN & ENGENEs Worldwide</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const audio = document.getElementById('bgmAudio');
+        const playBtn = document.getElementById('playBtn');
+        let isPlaying = false;
+
+        function startMusic() {
+            audio.play().then(() => {
+                isPlaying = true;
+                playBtn.innerHTML = "❚❚";
+            }).catch(err => {
+                isPlaying = false;
+                playBtn.innerHTML = "▶";
+            });
+        }
+
+        window.addEventListener('load', () => {
+            startMusic();
+        });
+
+        document.addEventListener('click', function autoPlayOnFirstClick() {
+            if (!isPlaying) {
+                startMusic();
+            }
+            document.removeEventListener('click', autoPlayOnFirstClick);
+        }, { once: true });
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                playBtn.innerHTML = "▶";
+                isPlaying = false;
+            } else {
+                startMusic();
+            }
+        }
+
+        /* Lightbox Modal */
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.style.display = "flex";
+            modalImg.src = imgSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+
+        /* Soulmate Quiz Logic */
+        const matches = {
+            'Leadership & Calm': { name: 'Jungwon 🐱', desc: 'Your soulmate is Jungwon! You value dependability, wisdom, and reliable strength.' },
+            'Fashion & Rock': { name: 'Jay 🦅', desc: 'Your soulmate is Jay! You love high fashion, bold energy, and passionate self-expression.' },
+            'Warmth & Sports': { name: 'Jake 🐶', desc: 'Your soulmate is Jake! You thrive on positive energy, genuine warmth, and loyal companionship.' },
+            'Graceful & Ice': { name: 'Sunghoon 🐧', desc: 'Your soulmate is Sunghoon! You are drawn to elegance, quiet charm, and classic visual grace.' },
+            'Sunshine & Bright': { name: 'Sunoo 🦊', desc: 'Your soulmate is Sunoo! You shine bright with optimism, affection, and vivid emotional beauty.' },
+            'Dance & Powerful': { name: 'Ni-ki 🐆', desc: 'Your soulmate is Ni-ki! You possess relentless passion, dance precision, and a playful artistic spirit.' }
+        };
+
+        function answerQuiz(choice) {
+            const match = matches[choice];
+            document.getElementById('quizBox').style.display = 'none';
+            document.getElementById('quizResult').style.display = 'block';
+            document.getElementById('matchTitle').innerText = `Your ENHYPEN Soulmate: ${match.name}`;
+            document.getElementById('matchDesc').innerText = match.desc;
+        }
+
+        function resetQuiz() {
+            document.getElementById('quizBox').style.display = 'block';
+            document.getElementById('quizResult').style.display = 'none';
+        }
+
+        /* Guestbook LocalStorage */
+        const loveForm = document.getElementById('loveForm');
+        const messagesList = document.getElementById('messagesList');
+
+        document.addEventListener('DOMContentLoaded', loadMessages);
+
+        loveForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('username').value;
+            const bias = document.getElementById('bias').value;
+            const text = document.getElementById('message').value;
+
+            const newMessage = { name, bias, text };
+
+            saveMessage(newMessage);
+            addMessageToDOM(newMessage);
+
+            loveForm.reset();
+        });
+
+        function saveMessage(msg) {
+            let messages = JSON.parse(localStorage.getItem('enhypen_messages')) || [];
+            messages.unshift(msg);
+            localStorage.setItem('enhypen_messages', JSON.stringify(messages));
+        }
+
+        function loadMessages() {
+            let messages = JSON.parse(localStorage.getItem('enhypen_messages')) || [
+                { name: "GlobalENGENE", bias: "All Members", text: "ENHYPEN and ENGENE forever! Thank you for giving us strength every single day." }
+            ];
+            messagesList.innerHTML = '';
+            messages.forEach(addMessageToDOM);
+        }
+
+        function addMessageToDOM(msg) {
+            const card = document.createElement('div');
+            card.className = 'message-card';
+            card.innerHTML = `
+                <div class="message-header">
+                    <span class="message-author">${escapeHtml(msg.name)}</span>
+                    <span class="message-bias">Bias: ${escapeHtml(msg.bias)}</span>
+                </div>
+                <p class="message-text">${escapeHtml(msg.text)}</p>
+            `;
+            messagesList.appendChild(card);
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/[&<>"']/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+            });
+        }
+    </script>
+</body>
+</html>
